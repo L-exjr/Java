@@ -13,18 +13,24 @@ public class MyOwnArray {
 
         // Initializing Array
         Student[] students = new Student[60000];
-
-        int numStudents;
-
+        
         // Number of students
-        do {
-            System.out.print("Enter number of students: ");
-            numStudents = scanner.nextInt();
+        int numStudents = 0;
 
-            if (numStudents < 1 || numStudents > 60000) {
-                System.out.println("Invalid. Enter number between 0 and 60,000");
+        while (true) {
+            System.out.print("Enter number of students: ");
+            if (scanner.hasNextInt()) {
+                numStudents = scanner.nextInt();
+                if (numStudents >= 1 && numStudents <= 60000) {
+                    break; // Valid input, exit loop
+                }
+                System.out.println("Invalid. Enter a number between 1 and 60,000.");
+            } else {
+                System.out.println("Invalid input. Please enter a valid integer.");
+                scanner.next(); // Clear invalid input
             }
-        } while (numStudents < 1 || numStudents > 60000);
+        }
+        
 
         for (int i=0; i < numStudents; i++) {
             students[i] = new Student();
