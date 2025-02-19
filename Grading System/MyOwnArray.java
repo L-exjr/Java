@@ -23,7 +23,6 @@ public class MyOwnArray {
 
             if (numStudents < 1 || numStudents > 60000) {
                 System.out.println("Invalid. Enter number between 0 and 60,000");
-                scanner.next();
             }
         } while (numStudents < 1 || numStudents > 60000);
 
