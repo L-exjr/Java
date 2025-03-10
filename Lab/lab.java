@@ -1,84 +1,84 @@
-import java.util.Scanner;
-
 public class lab {
-    public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-
-        int[] numbers = new int[20];
-        int count = 0;
-
-        System.out.println("Enter numbers between 1 and 20 (No Duplicates)");
-        
-        while (count < 20) {
-            System.out.print("Enter number " + (count + 1) + ": ");
-            int num = input.nextInt();
-
-            if (num < 1 || num > 20) {
-                System.out.println("Number must be between 1 and 20. Try again.");
-                continue;
-            }
-
-            boolean isDuplicate = false;
-
-            for (int i=0; i < count; i++) {
-                if (numbers[i] == num) {
-                    isDuplicate = true;
-                    break;
-                }
-            }
-
-            if (isDuplicate) {
-                System.out.println("Number already entered. Try again");
-            } else {
-                numbers[count] = num;
-                count++;
-            }
-        }
-
-        int[] oddNumbers = new int[9];
-        int[] evenNumbers = new int[9];
-        int oddCount = 0, evenCount = 0;
-
-        for (int num : numbers) {
-            if (num % 2 != 0 && oddCount < 9) {
-                oddNumbers[oddCount++] = num;
-            } else if (num % 2 == 0 && evenCount < 9) {
-                evenNumbers[evenCount++] = num;
-            }
-
-            if (oddCount == 9 && evenCount == 9) {
-                break;
-            }
-        }
-
-        int[][] oddArray = new int[3][3];
-        int[][] evenArray = new int[3][3];
-        int index = 0;
+    public static void main(String args[]) {
+        //The Matrix with even numbers
+        int[][] evenMatrix = new int[3][3];
+        int evenNumber = 2;
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                oddArray[i][j] = oddNumbers[index];
-                evenArray[i][j] = evenNumbers[index];
-
-                index++;
+                evenMatrix[i][j] = evenNumber;
+                evenNumber += 2; 
             }
         }
 
-        System.out.println("\nFirst 9 odd Numbers in a 3*3 array: " );
-        printArray(oddArray);
+        //The Matrix with odd numbers
+        int[][] oddMatrix = new int[3][3];
+        int oddNumber = 1;
 
-        System.out.println("\nmFirst 9 even Numbers in a 3*3 array: " );
-        printArray(evenArray);
-
-        input.close();
-    }
-
-    public static void printArray(int[][] array) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                System.out.print(array[i][j] + "\t");
+                oddMatrix[i][j] = oddNumber;
+                oddNumber += 2;
+            }
+        }
+
+        //Displaying the matrices
+        /*System.out.println("Even Matrix:");
+        for (int[] row : evenMatrix) {
+            for (int num : row) {
+                System.out.print(num + " ");
             }
             System.out.println();
         }
+
+        System.out.println("\nOdd Matrix:");
+        for (int[] row : oddMatrix) {
+            for (int num : row) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
+        }*/
+
+
+        // Leading diagonal product for the even matrix
+        int evenLeadingdiagonal = 1;
+        for (int i = 0; i < 3; i++) {
+            evenLeadingdiagonal *= evenMatrix[i][i];
+        }
+        System.out.println("Product of leading diagonal elements for the even matrix: " + evenLeadingdiagonal);
+
+        //Leading diagonal product for the odd matrix
+        int oddLeadingdiagonal =1 ;
+        for (int i = 0; i < 3; i++){
+            oddLeadingdiagonal *= oddMatrix[i][i];
+        }
+
+        System.out.println("Product of leading diagonal elements for the odd matrix: " + oddLeadingdiagonal);
+
+        //Trailing diagonal product for the even matrix
+        int evenTrailingdiagonal = 1;
+        for (int i = 0; i < 3; i++) {
+            evenTrailingdiagonal *= evenMatrix[i][2 - i];
+        }
+        System.out.println("\nProduct of trailing diagonal elements: " + evenTrailingdiagonal);
+
+        //Trailing diagonal product for the odd matrix
+        int oddTrailingdiagonal = 1;
+        for (int i = 0; i < 3; i++) {
+            oddTrailingdiagonal *= oddMatrix[i][2 - i];
+        }
+        System.out.println("Product of trailing diagonal elements: " + oddTrailingdiagonal);
+
+        //Difference between the products of the trailing and leading diagonal elements for even Matrix
+        int evenDifference = evenTrailingdiagonal - evenLeadingdiagonal;
+        System.out.println("\nDifference between trailing and leading diagonal products (Even Matrix): " + evenDifference);
+
+        //Difference between the products of the trailing and leading diagonal elements for odd Matrix
+        int oddDifference = oddTrailingdiagonal - oddLeadingdiagonal;
+        System.out.println("Difference between trailing and leading diagonal products (Odd Matrix): " + oddDifference);
+
+        //Difference between the trailing diagonal products
+        int trailingDifference = oddTrailingdiagonal - evenTrailingdiagonal;
+        System.out.println("\nDifference between trailing diagonals (Odd and Even Matrix): " + trailingDifference);
     }
 }

@@ -9,7 +9,6 @@ public class MyOwn {
         boolean paidFees, Condoned, passedExam, passedAssess;
         String results = "", certificateStatus = "", repeatStatus = "";
 
-
         // Validate exam score (must be between 0 and 70)
         do {
             System.out.print("Enter exam score: ");
@@ -33,7 +32,7 @@ public class MyOwn {
         // Validate fee payment status (Yes/No)
         while (true) {
             System.out.print("Have you paid your fees in full? (Yes/No): ");
-            String input = scanner.next().trim().toLowerCase(); // Normalize input
+            String input = scanner.next().trim().toLowerCase();
 
             if (input.equals("yes") || input.equals("y")) {
                 paidFees = true;

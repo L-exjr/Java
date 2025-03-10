@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class MyOwnArray {
-
     static class Student {
         String certStat = "", results = "", repeatStat = "";
         double examScore, assessmentScore, totalScore;
@@ -31,7 +30,6 @@ public class MyOwnArray {
             }
         }
         
-
         for (int i=0; i < numStudents; i++) {
             students[i] = new Student();
             System.out.println("\nStudent " + (i + 1) + ":");
@@ -120,9 +118,7 @@ public class MyOwnArray {
             } else if (students[i].passExam && !students[i].passAssess) {
                 System.out.println("\nYou failed Assessment.");
             }
-
         }
-        
         scanner.close();
     }
 }
